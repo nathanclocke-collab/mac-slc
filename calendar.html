@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>McMaster Sign Language Club Calendar</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #f4f6f9;
+        }
+
+        /* POPULAR NAVIGATION HEADER LAYOUT */
+        header {
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 30px;
+            border-bottom: 2px solid #e0e0e0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-home-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.2s;
+        }
+
+        .logo-home-link:hover {
+            opacity: 0.85;
+        }
+
+        .logo-container {
+            width: 60px;
+            height: 60px;
+            overflow: hidden;
+            border-radius: 50%;
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #000;
+        }
+
+        .logo-container img {
+            width: 110%;
+            height: 110%;
+            object-fit: cover;
+            transform: scale(1.05);
+        }
+
+        header h1 {
+            font-size: 1.6rem;
+            color: #222;
+            font-weight: 700;
+        }
+
+        /* DYNAMIC NAV MENU LINKS */
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-right: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #555;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 6px 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease-in-out;
+        }
+
+        nav a:hover {
+            color: #72bdcf;
+        }
+
+        nav a.active-page {
+            color: #222;
+            border-bottom: 2px solid #8cd3e4;
+        }
+
+        .header-right-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Admin Unlock Button */
+        #adminAuthBtn {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        #adminAuthBtn:hover {
+            background-color: #555;
+        }
+
+        /* Layout Grid */
+        .main-content {
+            display: flex;
+            flex-grow: 1;
+            height: calc(100vh - 92px);
+        }
+
+        /* Sidebar - Hidden on default load */
+        #sidebar {
+            width: 300px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-right: 1px solid #e0e0e0;
+            display: none; 
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        #sidebar h2 {
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        /* Close / Exit Button */
+        #closeSidebarBtn {
+            background: none;
+            border: none;
+            color: #ff4d4d;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        #closeSidebarBtn:hover {
+            background-color: #ffe6e6;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .form-group input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        #addEventBtn {
+            background-color: #8cd3e4;
+            color: #222;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+
+        #addEventBtn:hover {
+            background-color: #72bdcf;
+        }
+
+        /* Calendar Canvas */
+        #calendar-container {
+            flex-grow: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        #calendar {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .fc .fc-button-primary {
+            background-color: #8cd3e4 !important;
+            border-color: #8cd3e4 !important;
+            color: #222 !important;
+            font-weight: bold !important;
+        }
+        .fc .fc-button-primary:hover {
+            background-color: #72bdcf !important;
+            border-color: #72bdcf !important;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <!-- Home Link Logo wrapper -->
+        <a href="index.html" class="logo-home-link">
+            <div class="header-left">
+                <div class="logo-container">
+                    <img src="logo.png" alt="McMaster SLC Logo">
+                </div>
+                <h1>McMaster Sign Language Club</h1>
+            </div>
+        </a>
+
+        <!-- Horizontal menu nav selector -->
+        <div class="header-right-controls">
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="game.html">Game</a>
+                <a href="calendar.html" class="active-page">Calendar</a>
+            </nav>
+            <button id="adminAuthBtn">Admin Login</button>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div id="sidebar">
+            <div class="sidebar-header">
+                <h2>Add New Event</h2>
+                <button id="closeSidebarBtn">Leave Editing</button>
+            </div>
+            <div class="form-group">
+                <label for="eventTitle">Event Title</label>
+                <input type="text" id="eventTitle" placeholder="e.g., ASL Social Night">
+            </div>
+            <div class="form-group">
+                <label for="eventDate">Date</label>
+                <input type="date" id="eventDate">
+            </div>
+            
+            <!-- NEW CATEGORY SELECTOR FORM COMPONENT -->
+            <div class="form-group">
+                <label for="eventType">Type</label>
+                <select id="eventType" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9rem; background-color: white; cursor: pointer;">
+                    <option value="event">Special Event (Purple)</option>
+                    <option value="meeting">Weekly Meeting (Teal/blue)</option>
+                </select>
+            </div>
+            
+            <button id="addEventBtn">Add to Calendar</button>
+        </div>
+
+        <div id="calendar-container">
+            <div id="calendar"></div>
+        </div>
+    </div>
+
+    <script>
+        const SECRET_CODE = "MacSLC2026";
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            
+            function getSavedEvents() {
+                var localData = localStorage.getItem('slc_calendar_events');
+                if (localData) {
+                    return JSON.parse(localData);
+                }
+                return [
+                    { title: 'Weekly ASL Lesson', start: '2026-06-03', color: '#b39ddb', textColor: '#ffffff' }
+                ];
+            }
+
+            function saveEventsToStorage() {
+                var allEvents = calendar.getEvents();
+                var eventsArray = allEvents.map(function(e) {
+                    return {
+                        title: e.title,
+                        start: e.startStr, 
+                        color: e.backgroundColor,
+                        textColor: e.textColor
+                    };
+                });
+                localStorage.setItem('slc_calendar_events', JSON.stringify(eventsArray));
+            }
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                editable: false, 
+                events: getSavedEvents(),
+                
+                eventClick: function(info) {
+                    if (document.getElementById('sidebar').style.display === 'flex') {
+                        if (confirm("Would you like to delete the event: '" + info.event.title + "'?")) {
+                            info.event.remove();
+                            saveEventsToStorage(); 
+                        }
+                    } else {
+                        alert('Event: ' + info.event.title);
+                    }
+                }
+            });
+
+            calendar.render();
+
+            document.getElementById('adminAuthBtn').addEventListener('click', function() {
+                var accessCode = prompt("Enter the Admin Passcode to add/remove events:");
+                
+                if (accessCode === SECRET_CODE) {
+                    document.getElementById('sidebar').style.display = 'flex';
+                    calendar.setOption('editable', true);
+                    this.style.display = 'none'; 
+                } else {
+                    alert("Incorrect passcode. Access denied.");
+                }
+            });
+
+            document.getElementById('closeSidebarBtn').addEventListener('click', function() {
+                document.getElementById('sidebar').style.display = 'none'; 
+                calendar.setOption('editable', false); 
+                document.getElementById('adminAuthBtn').style.display = 'block'; 
+                
+                document.getElementById('eventTitle').value = '';
+                document.getElementById('eventDate').value = '';
+                document.getElementById('eventType').value = 'event';
+            });
+
+            // UPDATED ADD BUTTON WITH THE COLOR ENGINE LOGIC
+            document.getElementById('addEventBtn').addEventListener('click', function() {
+                var title = document.getElementById('eventTitle').value;
+                var date = document.getElementById('eventDate').value;
+                var type = document.getElementById('eventType').value; // Reads drop-down choice
+
+                if (title === '' || date === '') {
+                    alert('Please enter both a title and a date!');
+                    return;
+                }
+
+                // Default colors (Special Event -> Teal)
+                var bgColor = '#b39ddb';  
+                var txtColor = '#222';
+
+                // Evaluate option value to switch color presets
+                if (type === 'meeting') {
+                    bgColor = '#8cd3e4';  // 
+                    txtColor = '#222';  // black Text
+                }
+
+                calendar.addEvent({
+                    title: title,
+                    start: date,
+                    allDay: true,
+                    color: bgColor,
+                    textColor: txtColor
+                });
+
+                saveEventsToStorage();
+
+                document.getElementById('eventTitle').value = '';
+                document.getElementById('eventDate').value = '';
+                document.getElementById('eventType').value = 'event'; // Reset option
+            });
+        });
+    </script>
+</body>
+</html>
+
