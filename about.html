@@ -8,6 +8,11 @@
     <!-- Tab Logo Icon Fix -->
     <link rel="icon" type="image/png" sizes="32x32" href="logo.png">
     
+    <!-- Preload Critical Above-the-Fold Images for Instant Display -->
+    <link rel="preload" as="image" href="logo.png">
+    <link rel="preload" as="image" href="nika.jpg">
+    <link rel="preload" as="image" href="nathan.jpg">
+
     <!-- Font Awesome Kit for Official Social Logos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
@@ -176,6 +181,19 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            /* Fade-in transition to eliminate harsh pop-in */
+            opacity: 0;
+            animation: fadeInImage 0.3s ease-in forwards;
+        }
+
+        .logo-container img {
+            opacity: 0;
+            animation: fadeInImage 0.3s ease-in forwards;
+        }
+
+        @keyframes fadeInImage {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .exec-card h3 {
@@ -285,7 +303,7 @@
         <a href="index.html" class="logo-home-link">
             <div class="header-left">
                 <div class="logo-container">
-                    <img src="logo.png" alt="McMaster SLC Logo">
+                    <img src="logo.png" alt="McMaster SLC Logo" width="60" height="60" decoding="async">
                 </div>
                 <h1>McMaster Sign Language Club</h1>
             </div>
@@ -293,7 +311,6 @@
 
         <nav>
             <a href="index.html">Home</a>
-            <a href="game.html">Game</a>
             <a href="calendar.html">Calendar</a>
             <a href="about.html" class="active-page">About Us</a>
         </nav>
@@ -309,11 +326,10 @@
     <div class="main-container">
         <div class="exec-grid">
             
-            <!-- Executive Member 1 -->
+            <!-- Executive Member 1 (High priority - Immediate loading) -->
             <div class="exec-card">
                 <div class="exec-image-wrapper">
-                    <!-- Replace with your actual photo path, e.g., images/president.jpg -->
-                    <img src="nika.jpg" alt="Executive Photo">
+                    <img src="nika.jpg" alt="Nika Oustinov" width="140" height="140" decoding="async">
                 </div>
                 <h3>Nika Oustinov</h3>
                 <span class="exec-role">Co-President</span>
@@ -323,68 +339,67 @@
                 </p>
             </div>
 
-            <!-- Executive Member 2 -->
+            <!-- Executive Member 2 (High priority - Immediate loading) -->
             <div class="exec-card">
                 <div class="exec-image-wrapper">
-                    <img src="nathan.jpg" alt="Executive Photo">
+                    <img src="nathan.jpg" alt="Nathan Locke" width="140" height="140" decoding="async">
                 </div>
                 <h3>Nathan Locke</h3>
                 <span class="exec-role">Co-President</span>
                 <p class="exec-bio">Year/Program: PNB Music Cognition III<br>
                 Deaf/HoH/Hearing: Hearing<br>
-Favourite Sign: Now! It's a fun way to show that I’m ready and it feels silly</p>
+                Favourite Sign: Now! It's a fun way to show that I’m ready and it feels silly</p>
             </div>
 
-            <!-- Executive Member 3 -->
+            <!-- Executive Member 3 (Lazy loading below fold) -->
             <div class="exec-card">
                 <div class="exec-image-wrapper">
-                    <img src="hannah.jpg" alt="Executive Photo">
+                    <img src="hannah.jpg" alt="Hannah" width="140" height="140" loading="lazy" decoding="async">
                 </div>
                 <h3>Hannah</h3>
                 <span class="exec-role">Meeting Leader</span>
                 <p class="exec-bio">Year/Program: 3nd Year Health Sciences<br>
-Deaf/HoH/Hearing: Hard of Hearing<br>
-Favourite Sign: Sea turtle
-</p>
+                Deaf/HoH/Hearing: Hard of Hearing<br>
+                Favourite Sign: Sea turtle
+                </p>
             </div>
-            <!-- Executive Member 4 -->
+
+            <!-- Executive Member 4 (Lazy loading below fold) -->
             <div class="exec-card">
                 <div class="exec-image-wrapper">
-                    <img src="nanaki.jpg" alt="Executive Photo">
+                    <img src="nanaki.jpg" alt="Nanaki" width="140" height="140" loading="lazy" decoding="async">
                 </div>
-                <h3>Nanaki </h3>
+                <h3>Nanaki</h3>
                 <span class="exec-role">Meeting Leader</span>
                 <p class="exec-bio">Year/Program: 4th Year in Justice, Political Philosophy and Law. Minoring in GPSJ<br>
-Favourite Sign: Sad, I love the drama
-</p>
+                Favourite Sign: Sad, I love the drama
+                </p>
             </div>
 
             <!-- Executive Member 5 -->
             <div class="exec-card">
                 <div class="exec-image-wrapper">
-                    <img src="default-avatar.png" alt="Executive Photo">
+                    <img src="default-avatar.png" alt="Executive Photo" width="140" height="140" loading="lazy" decoding="async">
                 </div>
                 <h3>Name Here</h3>
                 <span class="exec-role">Meeting Leader</span>
                 <p class="exec-bio">Insert intro here</p>
             </div>
-
 
             <!-- Executive Member 6 -->
             <div class="exec-card">
                 <div class="exec-image-wrapper">
-                    <img src="default-avatar.png" alt="Executive Photo">
+                    <img src="default-avatar.png" alt="Executive Photo" width="140" height="140" loading="lazy" decoding="async">
                 </div>
                 <h3>Name Here</h3>
                 <span class="exec-role">Meeting Leader</span>
                 <p class="exec-bio">Insert intro here</p>
             </div>
 
-
             <!-- Executive Member 7 -->
             <div class="exec-card">
                 <div class="exec-image-wrapper">
-                    <img src="default-avatar.png" alt="Executive Photo">
+                    <img src="default-avatar.png" alt="Executive Photo" width="140" height="140" loading="lazy" decoding="async">
                 </div>
                 <h3>Name Here</h3>
                 <span class="exec-role">Meeting Leader</span>
@@ -394,7 +409,7 @@ Favourite Sign: Sad, I love the drama
         </div>
     </div>
 
-    <!-- SOCIAL MEDIA FOOTER WITH THE FIX APPLIED -->
+    <!-- SOCIAL MEDIA FOOTER -->
     <footer class="socials-footer">
         <h3>Connect With Us</h3>
         <p>Stay updated on lessons, events, and community updates!</p>
