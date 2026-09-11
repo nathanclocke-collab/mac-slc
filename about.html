@@ -271,6 +271,26 @@
         .icon-circle.instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
         .icon-circle.discord { background-color: #5865F2; }
         .icon-circle.email { background-color: #72bdcf; }
+        /* Rubric Button Gradient & Icon Sizing */
+        /* Rubric Button Base & Icon Sizing */
+        /* Rubric Button Pink Accent */
+        .icon-circle.rubric { 
+            background-color: #ea2670; 
+            color: #ffffff;
+            padding: 0 18px;              /* Side padding for spacing */
+            border-radius: 25px;          /* Matches circular height */
+            font-weight: 700;
+            font-size: 0.6rem;
+        }
+
+        .rubric-icon {
+            width: 26px;
+            height: 26px;
+            object-fit: contain;
+            display: block;
+            /* Optional: Inverts dark favicon colors to white so it pops on pink */
+            filter: brightness(0) invert(1);
+        }
 
         .icon-circle:hover {
             transform: translateY(-4px);
@@ -333,9 +353,9 @@
                 </div>
                 <h3>Nika Oustinov</h3>
                 <span class="exec-role">Co-President</span>
-                <p class="exec-bio">Year/Program: 3rd year Nursing!<br>
-                Deaf/HoH/Hearing: Hearing<br>                         
-                Favourite Sign: Turtle! It's so cute and so satisfying to do!
+                <p class="exec-bio"><strong>Year/Program:</strong>  Nursing III<br>
+                <strong>Deaf/HoH/Hearing:</strong> Hearing<br>                         
+                <strong>Favourite Sign:</strong> Turtle! It's so cute and so satisfying to do!
                 </p>
             </div>
 
@@ -346,9 +366,9 @@
                 </div>
                 <h3>Nathan Locke</h3>
                 <span class="exec-role">Co-President</span>
-                <p class="exec-bio">Year/Program: PNB Music Cognition III<br>
-                Deaf/HoH/Hearing: Hearing<br>
-                Favourite Sign: Now! It's a fun way to show that I’m ready and it feels silly</p>
+                <p class="exec-bio"><strong>Year/Program:</strong> PNB Music Cognition III<br>
+                <strong>Deaf/HoH/Hearing:</strong> Hearing<br>
+                <strong>Favourite Sign:</strong> Now! It's a fun way to show that I’m ready and it feels silly</p>
             </div>
 
             <!-- Executive Member 3 (Lazy loading below fold) -->
@@ -358,9 +378,9 @@
                 </div>
                 <h3>Hannah</h3>
                 <span class="exec-role">Meeting Leader</span>
-                <p class="exec-bio">Year/Program: 3nd Year Health Sciences<br>
-                Deaf/HoH/Hearing: Hard of Hearing<br>
-                Favourite Sign: Sea turtle
+                <p class="exec-bio"><strong>Year/Program:</strong> 3rd Year Health Sciences<br>
+                <strong>Deaf/HoH/Hearing:</strong> Hard of Hearing<br>
+                <strong>Favourite Sign:</strong> Sea turtle
                 </p>
             </div>
 
@@ -369,31 +389,36 @@
                 <div class="exec-image-wrapper">
                     <img src="nanaki.jpg" alt="Nanaki" width="140" height="140" loading="lazy" decoding="async">
                 </div>
-                <h3>Nanaki</h3>
-                <span class="exec-role">Meeting Leader</span>
-                <p class="exec-bio">Year/Program: 4th Year in Justice, Political Philosophy and Law. Minoring in GPSJ<br>
-                Favourite Sign: Sad, I love the drama
+                <h3>Nanaki Nagra</h3>
+                <span class="exec-role">Vice-President</span>
+                <p class="exec-bio"><strong>Year/Program:</strong> Fifth Year in Justice, Political Philosopy and Law minoring in Global Peace, and Social Justice<br>
+                <strong>Deaf/HoH/Hearing:</strong> Deaf<br>
+                <strong>Favourite Sign:</strong> Sad, I love how dramatic it is!
                 </p>
             </div>
 
             <!-- Executive Member 5 -->
             <div class="exec-card">
                 <div class="exec-image-wrapper">
-                    <img src="default-avatar.png" alt="Executive Photo" width="140" height="140" loading="lazy" decoding="async">
+                    <img src="jasmine.jpg" alt="Executive Photo" width="140" height="140" loading="lazy" decoding="async">
                 </div>
-                <h3>Name Here</h3>
-                <span class="exec-role">Meeting Leader</span>
-                <p class="exec-bio">Insert intro here</p>
+                <h3>Jasmine San</h3>
+                <span class="exec-role">Finance</span>
+                <p class="exec-bio"><strong>Year/Program:</strong> Honours Biochemistry III<br>
+                <strong>Deaf/HoH/Hearing:</strong> Hearing<br>
+                <strong>Favourite Sign:</strong> Harmony because it looks so pretty!</p>
             </div>
 
             <!-- Executive Member 6 -->
             <div class="exec-card">
                 <div class="exec-image-wrapper">
-                    <img src="default-avatar.png" alt="Executive Photo" width="140" height="140" loading="lazy" decoding="async">
+                    <img src="lauren.jpg" alt="Executive Photo" width="140" height="140" loading="lazy" decoding="async">
                 </div>
-                <h3>Name Here</h3>
-                <span class="exec-role">Meeting Leader</span>
-                <p class="exec-bio">Insert intro here</p>
+                <h3>Lauren Challis</h3>
+                <span class="exec-role">Media</span>
+                <p class="exec-bio"><strong>Year/Program:</strong> Level III Chemical Biology<br>
+                <strong>Deaf/HoH/Hearing:</strong> Hearing<br>
+                <strong>Favourite Sign:</strong> Sunday - it's like a celebration, Sunday Funday!</p></p>
             </div>
 
             <!-- Executive Member 7 -->
@@ -401,9 +426,11 @@
                 <div class="exec-image-wrapper">
                     <img src="default-avatar.png" alt="Executive Photo" width="140" height="140" loading="lazy" decoding="async">
                 </div>
-                <h3>Name Here</h3>
+                <h3>Ezekiel Serrano</h3>
                 <span class="exec-role">Meeting Leader</span>
-                <p class="exec-bio">Insert intro here</p>
+                <p class="exec-bio"><strong>Year/Program:</strong> Honours Life Science II<br>
+                <strong>Deaf/HoH/Hearing:</strong> Hearing<br>
+                <strong>Favourite Sign:</strong> Sleep! Funny to do and it makes so much sense</p>
             </div>
 
         </div>
@@ -422,6 +449,9 @@
             </a>
             <a href="mailto:mslc@mcmaster.ca" class="icon-circle email" title="Email Us">
                 <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://campus.hellorubric.com/?s=16632" target="_blank" class="icon-circle rubric" title="Connect on Rubric">
+                Rubric
             </a>
         </div>
         <p class="footer-credit">&copy; 2026 McMaster Sign Language Club. All rights reserved.</p>
