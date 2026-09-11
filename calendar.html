@@ -340,19 +340,69 @@
         #modalDescription { font-size: 0.95rem; color: #555; line-height: 1.6; white-space: pre-wrap; }
 
         @media (max-width: 768px) {
-            header { flex-direction: column; gap: 15px; padding: 15px; text-align: center; }
-            .header-right-controls { flex-direction: column; width: 100%; gap: 15px; }
-            nav { margin-right: 0; justify-content: center; }
-            #adminAuthBtn { width: 100%; padding: 12px; }
-            .main-content { flex-direction: column; height: auto; }
-            #sidebar { width: 100%; border-right: none; border-bottom: 1px solid #e0e0e0; }
-            #calendar-container { padding: 10px; }
-            #calendar { padding: 10px; }
-            .fc .fc-header-toolbar { display: flex !important; flex-direction: column !important; gap: 12px !important; align-items: center !important; }
-            .fc .fc-toolbar-chunk { display: flex !important; justify-content: center !important; width: 100% !important; }
-            .fc .fc-toolbar-title { font-size: 1.25rem !important; text-align: center !important; }
-            .fc .fc-button { padding: 6px 10px !important; font-size: 0.85rem !important; }
-        }
+    header { 
+        flex-direction: column; 
+        gap: 15px; 
+        padding: 15px; 
+        text-align: center; 
+    }
+    .header-right-controls { 
+        flex-direction: column; 
+        width: 100%; 
+        gap: 15px; 
+    }
+    nav { 
+        margin-right: 0; 
+        justify-content: center; 
+    }
+
+    /* Move Admin Login button to bottom flow of the page on mobile */
+    #adminAuthBtn { 
+        width: fit-content;
+        margin: 20px auto 30px auto; /* Centers button with top & bottom spacing */
+        padding: 8px 16px;
+        font-size: 0.8rem;
+        opacity: 0.7; /* Keeps it subtle */
+        background-color: #555;
+    }
+
+    .main-content { 
+        flex-direction: column; 
+        height: auto; 
+    }
+    #sidebar { 
+        width: 100%; 
+        border-right: none; 
+        border-bottom: 1px solid #e0e0e0; 
+    }
+    #calendar-container { 
+        padding: 10px; 
+        display: flex;
+        flex-direction: column; /* Allows ordering button after calendar */
+    }
+    #calendar { 
+        padding: 10px; 
+    }
+    .fc .fc-header-toolbar { 
+        display: flex !important; 
+        flex-direction: column !important; 
+        gap: 12px !important; 
+        align-items: center !important; 
+    }
+    .fc .fc-toolbar-chunk { 
+        display: flex !important; 
+        justify-content: center !important; 
+        width: 100% !important; 
+    }
+    .fc .fc-toolbar-title { 
+        font-size: 1.25rem !important; 
+        text-align: center !important; 
+    }
+    .fc .fc-button { 
+        padding: 6px 10px !important; 
+        font-size: 0.85rem !important; 
+    }
+}
     </style>
 </head>
 <body>
@@ -373,7 +423,6 @@
                 <a href="calendar.html" class="active-page">Calendar</a>
                 <a href="about.html">About Us</a>
             </nav>
-            <button id="adminAuthBtn">Admin Login</button>
         </div>
     </header>
 
@@ -409,6 +458,7 @@
         <!-- Calendar Display -->
         <div id="calendar-container">
             <div id="calendar"></div>
+            <button id="adminAuthBtn">Admin Login</button>
         </div>
     </div>
 
